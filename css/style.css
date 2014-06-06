@@ -1,0 +1,194 @@
+ul{list-style:none;}
+nav,footer{overflow: hidden;}
+h1,h2{text-align:center; }
+footer h2{padding:40px;}
+
+.block{
+	width:800px;
+	height:100%;
+	text-align: center;
+	border-left:1px dashed #ccc;
+	border-right:1px dashed #ccc;
+	margin:0 auto;
+}
+
+.block:before{
+	content:'';
+	height:100%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right:-0.3em;
+}
+
+.centered{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#wrapper{
+	width:100%;
+	max-width:1920px;
+	min-width:1024px;
+	margin:0 auto;
+}
+
+#jumpMenu{
+	position: fixed;
+	bottom:20px;
+	left:30px;
+}
+
+#jumpMenu li a{
+	display:block;
+	border:1px solid #000;
+	background-color: #000;
+	width:10px;
+	height:10px;
+	margin:8px 0;
+	border-radius: 10px;
+}
+
+#jumpMenu li.active a{
+	background-color: transparent;
+}
+
+#home{
+	background-color:red;
+}
+#about{
+	background-color:green;
+}
+
+#notify{
+	background-color:yellow;
+}
+
+#gallery{
+	background-image:url('../images/gallery_1200x900.jpg');
+	background-size:cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+#product{
+	background-image:url('../images/product_1920x900.jpg');
+	background-size:cover;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+/* ====================================== CAROUSEL ====================================== */
+
+.carousel{
+	position: relative;
+	border:1px dashed #ccc;
+}
+
+.carousel-housing{
+	overflow: hidden;
+}
+
+.carousel-nav{
+	display: block;
+	text-align: center;
+	margin-top: -31px;
+	position: absolute;
+	top: 50%;
+	border: none;
+	z-index: 2;
+	width: 55px;
+	height: 62px;
+	background-repeat: no-repeat;
+}
+
+.carousel-nav:before, .carousel-nav:after{
+	display: inline-block;
+	color: #fff;
+	font-size: 2em;
+	z-index: 2;
+	min-width:110px;
+	position: absolute;
+	top:50%;
+	margin-top: -24px;
+}
+
+.carousel-nav.next:hover:before {
+	content: attr(data-content);
+	right:100%;
+	padding-right:10px;
+	padding-left:25px;
+	text-align:right;
+}
+
+.carousel-nav.prev:hover:before {
+	content: attr(data-content);
+	left:100%;
+	padding-left:10px;
+	padding-right:25px;
+	text-align:left;
+}
+
+.carousel-nav.prev
+{
+	left: 0;
+	background-image: url('../images/prev.png');
+}
+
+.carousel-nav.next
+{
+	right: 0;
+	background-image: url('../images/next.png');
+}
+
+.carousel-container{
+	float: left;
+	overflow: hidden;
+}
+
+.carousel-numbers
+{
+	text-align: center;
+	position: absolute;
+	width: 300px;
+	bottom: 0;
+	z-index: 1;
+	margin:20px 0;
+	left: 50%;
+	margin-left: -150px;
+}
+
+.carousel-numbers li
+{
+	display: inline-block;
+	margin:0 3px;
+}
+
+.carousel-numbers a
+{
+	display: block;
+	background: rgba(0,0,0,0.5);
+	color:#fff;
+	padding:5px 10px;
+}
+
+.carousel-numbers a:hover,
+.carousel-numbers a.active
+{
+	background-color:#fff;
+	color:#db1118;
+}
+
+
+
+#about .block{
+	width:100%;
+}
+
+#about p{
+	width:800px;
+	margin:0 auto;
+	padding:40px;
+}
