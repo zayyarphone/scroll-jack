@@ -2,67 +2,11 @@ ul{list-style:none;}
 nav,footer{overflow: hidden;}
 h1,h2{text-align:center; }
 footer h2{padding:40px;}
+body{overflow-x: hidden;}
 
-.block{
-	width:800px;
-	height:100%;
-	text-align: center;
-	border-left:1px dashed #ccc;
-	border-right:1px dashed #ccc;
-	margin:0 auto;
-}
-
-.block:before{
-	content:'';
-	height:100%;
-	display: inline-block;
-	vertical-align: middle;
-	margin-right:-0.3em;
-}
-
-.centered{
-	display: inline-block;
-	vertical-align: middle;
-}
-
-#wrapper{
-	width:100%;
-	max-width:1920px;
-	min-width:1024px;
-	margin:0 auto;
-}
-
-#jumpMenu{
-	position: fixed;
-	bottom:20px;
-	left:30px;
-}
-
-#jumpMenu li a{
-	display:block;
-	border:1px solid #000;
-	background-color: #000;
-	width:10px;
-	height:10px;
-	margin:8px 0;
-	border-radius: 10px;
-}
-
-#jumpMenu li.active a{
-	background-color: transparent;
-}
-
-#home{
-	background-color:red;
-}
-#about{
-	background-color:green;
-}
-
-#notify{
-	background-color:yellow;
-}
-
+#home{background-color:red; }
+#about{background-color:green; }
+#notify{background-color:yellow; }
 #gallery{
 	background-image:url('../images/gallery_1200x900.jpg');
 	background-size:cover;
@@ -70,17 +14,50 @@ footer h2{padding:40px;}
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+#about .block{width:100%;}
+#about p{
+	width:800px;
+	margin:0 auto;
+	padding:40px;
+}
 
-#product{
-	background-image:url('../images/product_1920x900.jpg');
-	background-size:cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-position: center center;
+/* ============================= Form ============================= */
+
+ul.ulForm{
+	border:1px dashed #222;
+	padding:0;
 }
 
 
-/* ====================================== CAROUSEL ====================================== */
+ul.ulForm li{
+	padding:15px;
+}
+
+ul.ulForm label{
+	display: block;
+	width:100px;
+	float:left;
+	position: relative;
+	top:5px;
+	text-align: right;
+	margin-right:10px;
+}
+
+ul.ulForm input[type="text"],
+ul.ulForm input[type="email"]{
+	width:200px;
+	padding:5px;
+	border:1px solid #ccc;
+}
+
+
+ul.ulForm input[type="submit"]{
+	padding:5px 10px;
+	border:1px solid #000;
+}
+
+
+/* ============================= Carousel ============================= */
 
 .carousel{
 	position: relative;
@@ -182,13 +159,55 @@ footer h2{padding:40px;}
 }
 
 
+/* ============================= Vertical Align ============================= */
 
-#about .block{
-	width:100%;
+.block{
+	width:800px;
+	height:100%;
+	text-align: center;
+	border-left:1px dashed #ccc;
+	border-right:1px dashed #ccc;
+	margin:0 auto;
 }
 
-#about p{
-	width:800px;
+.block:before{
+	content:'';
+	height:100%;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right:-0.3em;
+}
+
+.centered{
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#wrapper{
+	width:100%;
+	max-width:1920px;
+	min-width:1024px;
 	margin:0 auto;
-	padding:40px;
+}
+
+/* ============================= Jump Menu ============================= */
+
+#jumpMenu{
+	position: fixed;
+	bottom:20px;
+	left:30px;
+}
+
+#jumpMenu li a{
+	display:block;
+	border:1px solid #000;
+	background-color: #000;
+	width:10px;
+	height:10px;
+	margin:8px 0;
+	border-radius: 10px;
+}
+
+#jumpMenu li.active a{
+	background-color: transparent;
 }
