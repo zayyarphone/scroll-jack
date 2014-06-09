@@ -34,31 +34,21 @@ var SCROLL_JACK = function(){
 		var $gallery;
 
 		var left = function(){
-			// currentFrame = c.document.scrollJack('currentFrame');
-			// $carousel =  c.segments.eq(currentFrame).find('.carousel');
-			// if ($carousel.length) {
-			// 	$carousel.carousel('slide',-1);
-			// 	return;
-			// }else{
-			// 	$gallery =  c.segments.eq(currentFrame).find('.gallery');
-			// 	if ($gallery.length) {
-			// 		$gallery.gallery('slide',-1);
-			// 	};
-			// }
+			currentFrame = c.document.scrollJack('setting','currentFrame');
+			$carousel =  c.segments.eq(currentFrame).find('.carousel');
+			if ($carousel.length) {
+				$carousel.carousel('slide',-1);
+				return;
+			}
 		};
 
 		var right = function(){
-			// currentFrame = c.document.scrollJack('currentFrame');
-			// $carousel =  c.segments.eq(currentFrame).find('.carousel');
-			// if ($carousel.length) {
-			// 	$carousel.carousel('slide',1);
-			// 	return;
-			// }else{
-			// 	$gallery =  c.segments.eq(currentFrame).find('.gallery');
-			// 	if ($gallery.length) {
-			// 		$gallery.gallery('slide',1);
-			// 	};
-			// }
+			currentFrame = c.document.scrollJack('setting','currentFrame');
+			$carousel =  c.segments.eq(currentFrame).find('.carousel');
+			if ($carousel.length) {
+				$carousel.carousel('slide',1);
+				return;
+			}
 		};
 
 		var up = function(){

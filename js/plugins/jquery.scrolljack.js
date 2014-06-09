@@ -14,7 +14,6 @@
         var $body = $('body');
         var $sections = $el.find(settings.sections);
         var $navMenu = $el.find(settings.navMenu);
-        var currentFrame = 0;
         var windowResizeDone;
         var lastActionAt;
         var hashStrings = {};
@@ -47,7 +46,7 @@
         function actHash(){
             var hashTag = window.location.hash.substr(1);
             if (hashStrings[hashTag]) {
-                currentFrame = hashStrings[hashTag];
+                settings.currentFrame = hashStrings[hashTag];
             };
             scroll(0,-1);
         };
@@ -80,14 +79,14 @@
             // when scroll up
             if (e.originalEvent.detail < 0 || e.originalEvent.wheelDelta > 0 ){
 
-                if(currentFrame > 0){
+                if(settings.currentFrame > 0){
                     scroll(-1);
                     return false;
                 }
             }
             // when scroll down
             else {
-                if (currentFrame < sectionCount - 1) {
+                if (settings.currentFrame < sectionCount - 1) {
                     scroll(1);
                     return false;
                 }
@@ -98,7 +97,7 @@
         function onNavClick(e){
             e.preventDefault();
             var hashTag = this.hash.substr(1);
-            currentFrame = hashStrings[hashTag];
+            settings.currentFrame = hashStrings[hashTag];
             scroll(0,-1);
             $navMenu.find('li').removeClass('active');
             $(this)
@@ -110,14 +109,14 @@
         function scroll(action,delay){
 
             if ( lastActionAt < (delay || settings.delay) ) return false;
-            if ( action === (-1) && currentFrame === 0) return true;
-            if ( action === 1 && currentFrame === $sections.length - 1) return true;
+            if ( action === (-1) && settings.currentFrame === 0) return true;
+            if ( action === 1 && settings.currentFrame === $sections.length - 1) return true;
 
             lastActionAt = 0;
-            currentFrame = currentFrame + (action);
+            settings.currentFrame = settings.currentFrame + (action);
             runCounter();
 
-            var hashTag = hashKeys[currentFrame];
+            var hashTag = hashKeys[settings.currentFrame];
 
             // transimit the event of before changed
             $.event.trigger({
@@ -125,12 +124,12 @@
                 action :  hashTag
             });
 
-            var scrollAmount =( $window.height() * currentFrame ) + settings.topAllowance;
+            var scrollAmount =( $window.height() * settings.currentFrame ) + settings.topAllowance;
 
             // scroll here
            $('body,html').animate({scrollTop: scrollAmount}, settings.speed, function(){
 
-                if ( ! hashKeys[currentFrame] ) return;
+                if ( ! hashKeys[settings.currentFrame] ) return;
 
                 var $achr = $navMenu.find('li a[href="#'+ hashTag +'"]');
 
@@ -153,11 +152,11 @@
 
         };
 
-        function option(key,val){
+        function setting(key,val){
             if (val) {
-                options[key] = val;
+                settings[key] = val;
             } else {
-                return options[key];
+                return settings[key];
             }
         };
 
@@ -167,13 +166,9 @@
         };
 
         function hook(hookName){
-            if (settings[hookName] !== undefined) {
+            if (typeof settings[hookName] === 'function') {
                 settings[hookName].call(el);
             };
-        };
-
-        function getCurrentFrame(){
-            return currentFrame;
         };
 
         function runCounter(){
@@ -189,11 +184,10 @@
         init();
 
         return {
-            option       : option,
-            destory      : destroy,
-            scroll       : scroll,
-            actHash      : actHash,
-            currentFrame : getCurrentFrame
+            setting : setting,
+            destory : destroy,
+            scroll  : scroll,
+            actHash : actHash
         };
     };
 
@@ -231,6 +225,7 @@
         speed        : 600,
         delay        : 1000,
         topAllowance : 0,
+        currentFrame : 0,
         onInit       : function(){},
         onDestroy    : function(){}
     };
