@@ -1,6 +1,6 @@
 ;(function ($,document,window,undefined) {
 
-    var pluginName = 'MyAweSomePlugin';
+    var pluginName = 'MyAwesomePlugin';
 
     function Plugin(element,options){
 
@@ -14,18 +14,43 @@
         // init only call the required functions to initialize the plugin
         function init(){
             bind();
+            awesomer(0);
             hook('onInit');
         };
 
         function bind(){
-            // here we apply the custom style using jquery, For example
-            // $('.some-div').css({background-color:'green'});
-            // $('.some-div').height(100);
+
+            // initial DOM mantipulation
+            $el
+                .find(settings.frames)
+                .css({
+                    'background-color' :'#bada55',
+                    'border-color'     : 'yellow'
+                });
+
+            // or bind the DOM events
+            $el.find('.prev').on('click',toPrev);
+            $el.find('.next').on('click',toNext);
         };
 
         function unbind(){
-            // here we remove the the custom style applied at the bind stage
-            // $('.some-div').removeAttr('style');
+            // here we reverse everything we do at the bind stage
+            $el
+                .find(settings.frames)
+                .removeAttr('style');
+
+            $el.find('.prev').off('click',toPrev);
+            $el.find('.next').off('click',toNext);
+        };
+
+        function toPrev(e){
+            e.preventDefault();
+            awesomer(-1);
+        };
+
+        function toNext(e){
+            e.preventDefault();
+            awesomer(1);
         };
 
         function setting(key,val){
@@ -38,8 +63,14 @@
 
         function destroy(){
             unbind();
-            $el.removeData('plugin_' + pluginName);
+            // $el.removeData('plugin_' + 'awelsome');
             hook('onDestroy');
+        };
+
+        // do your actual awesome plugin stuff happens here
+        function awesomer(idx){
+            settings.current =  settings.current + idx;
+            alert('Current index is ' + settings.current);
         };
 
         function hook(hookName){
@@ -51,10 +82,10 @@
         init();
 
         return {
-            init    : init,
-            destory : destroy,
-            scroll  : scroll,
-            setting : setting
+            init     : init,
+            destroy  : destroy,
+            awesomer : awesomer,
+            setting  : setting
         };
     };
 
@@ -90,11 +121,23 @@
 
     // you can specify your default values here
     $.fn[pluginName].defaults = {
-        currentFrame : 0,
-        speed        : 600,
-        delay        : 1000,
-        onInit       : function(){},
-        onDestroy    : function(){}
+        current   : 0,
+        frames    : '.awesome-div',
+        width     : 200,
+        height    : 200,
+        speed     : 600,
+        delay     : 1000,
+        onInit    : function(){},
+        onDestroy : function(){}
     };
 
 })(jQuery,document,window);
+
+// Example Usage
+
+$(document).ready(function(){
+    $('#wrapper').MyAwesomePlugin({});
+});
+
+
+// $('#wrapper').awesome('awesomer',1);
