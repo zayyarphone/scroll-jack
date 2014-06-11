@@ -5,11 +5,11 @@
     function Plugin(element,options){
 
         // cache the dom element
-        var settings = $.extend({},$.fn[pluginName].defaults,options);
-        var el = element;
-        var $el = $(element);
+        var settings  = $.extend({},$.fn[pluginName].defaults,options);
+        var el        = element;
+        var $el       = $(element);
         var $document = $(document);
-        var $window = $(window);
+        var $window   = $(window);
 
         // init only call the required functions to initialize the plugin
         function init(){
@@ -133,11 +133,3 @@
 
 })(jQuery,document,window);
 
-// Example Usage
-
-$(document).ready(function(){
-    $('#wrapper').MyAwesomePlugin({});
-});
-
-
-// $('#wrapper').awesome('awesomer',1);
